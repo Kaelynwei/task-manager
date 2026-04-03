@@ -5,8 +5,8 @@ import IdeaList from "./components/IdeaList";
 function App() {
   return (
     <div className="App">
-      <h1><IdeaList/></h1>
-      <Idea />
+      <h1>Idea List</h1>
+      <IdeaList />
     </div>
   );
 }
