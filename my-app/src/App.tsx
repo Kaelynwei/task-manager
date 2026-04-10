@@ -1,5 +1,5 @@
-import Idea from "./components/Idea"
 import IdeaList from "./components/IdeaList";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
