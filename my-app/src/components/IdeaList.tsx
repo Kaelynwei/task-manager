@@ -20,7 +20,7 @@ function IdeaList() {
     };
 
     const handleDelete = (id:number) =>{
-        setTasks(tasks.filter(task => task.id != id))
+        setTasks(tasks.filter(task => task.id !== id))
     };
 
     const sortedTasks = [...tasks].sort((a,b)=> Number(a.completed)-Number(b.completed));

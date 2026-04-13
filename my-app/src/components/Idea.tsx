@@ -2,8 +2,8 @@ import { type Task } from '../Type';
 
 interface IdeaProps{
     task: Task;
-    onToggleStatus:(id: number) =>void;
-    onDelete:(id: number) =>void;
+    onToggleStatus:(id: number) => void;
+    onDelete:(id: number) => void;
 }
 
 function Idea({ task, onToggleStatus, onDelete }: IdeaProps) {
