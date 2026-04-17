@@ -1,5 +1,5 @@
 import { type Task } from './Type';
-import { BrowserRouter, Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import TaskDetailPage from './pages/TaskDetailPage';
 import HomePage from './pages/HomePage';
 import { useState } from 'react';
@@ -9,7 +9,7 @@ function App() {
     {id: 1, name: "first task", completed: false, description: "first task description", dueDate: "2026-04-04"},
     {id: 2, name: "second task", completed: false, description: "second task description", dueDate: "2026-04-05"},
     {id: 3, name: "third task", completed: false, description: "third task description", dueDate: "2026-04-05"}
-]);
+  ]);
 
   return (
     <BrowserRouter>
