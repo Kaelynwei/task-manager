@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
 import TaskDetailPage from './pages/TaskDetailPage';
 import HomePage from './pages/HomePage';
 import { useState } from 'react';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   const [tasks, setTasks] = useState<Task[]> ([
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage tasks={tasks} setTasks={setTasks} />} />
           <Route path="/task/:id" element={<TaskDetailPage tasks={tasks} />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>
     </BrowserRouter>
