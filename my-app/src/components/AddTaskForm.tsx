@@ -7,7 +7,7 @@ interface AddTaskFormProps {
 function AddTaskForm ({ onAdd }: AddTaskFormProps) {
     const [name, setName] = useState("");
 
-    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = (e: React.SubmitEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (name.trim()) {
