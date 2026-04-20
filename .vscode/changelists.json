@@ -1,0 +1,17 @@
+{
+  "changelists": [
+    {
+      "name": "Default",
+      "files": [
+        "my-app/package-lock.json",
+        "my-app/package.json",
+        "my-app/src/App.tsx",
+        "my-app/src/Type.ts",
+        "my-app/src/components/Idea.tsx",
+        "my-app/src/components/IdeaList.tsx",
+        ".vscode/changelists.json"
+      ]
+    }
+  ],
+  "active": "Default"
+}

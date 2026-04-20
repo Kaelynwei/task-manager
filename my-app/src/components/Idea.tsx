@@ -1,32 +1,59 @@
 import { type Task } from '../Type';
+import { Link } from 'react-router-dom';
 
 interface IdeaProps{
     task: Task;
-    onToggleStatus:(id: number) =>void;
-    onDelete:(id: number) =>void;
+    onToggleStatus:(id: number) => void;
+    onDelete:(id: number) => void;
 }
 
 function Idea({ task, onToggleStatus, onDelete }: IdeaProps) {
     return (
-        <div className="form-check d-flex justify-content-between align-items-center mb-2">
-            <div>
+        <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center', 
+            padding: '10px', 
+            borderBottom: '1px solid #eee',
+            marginBottom: '10px'
+        }}>
+            <div style={{ display: 'flex', alignItems: 'center' }}>
                 <input 
-                    className="form-check-input" 
                     type="checkbox" 
                     id={`check-${task.id}`} 
                     onChange={() => onToggleStatus(task.id)} 
                     checked={task.completed}
+                    style={{ cursor: 'pointer' }}
                 />
                 <label 
-                    className={`form-check-label ${task.completed ? 'text-decoration-line-through text-muted' : ''}`} 
                     htmlFor={`check-${task.id}`}
+                    style={{ 
+                        marginLeft: '10px',
+                        textDecoration: task.completed ? 'line-through' : 'none',
+                        color: task.completed ? '#888' : '#000',
+                        cursor: 'pointer'
+                    }}
+
                 >
-                    {task.name}
+                    <Link 
+                        to={`/task/${task.id}`}
+                        style={{ color: 'inherit', textDecoration: 'none' }}
+                    >
+                        {task.name}
+                    </Link>
                 </label>
             </div>
             <button
-                className="btn btn-outline-danger btn-sm"
                 onClick={() => onDelete(task.id)}
+                style={{
+                    backgroundColor: 'transparent',
+                    border: '1px solid #ff4d4f',
+                    color: '#ff4d4f',
+                    padding: '4px 8px',
+                    borderRadius: '4px',
+                    cursor: 'pointer',
+                    fontSize: '12px'
+                }}
             >
                 Delete
             </button>

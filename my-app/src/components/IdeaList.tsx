@@ -1,14 +1,20 @@
 import Idea from "./Idea";
 import { type Task } from '../Type';
-import { useState } from 'react';
 
-function IdeaList() {
-    const [tasks, setTasks] = useState<Task[]> ([
+
+interface IdeaListProps {
+    tasks: Task[];
+    setTasks: React.Dispatch<React.SetStateAction<Task[]>>;
+}
+
+function IdeaList({ tasks, setTasks }: IdeaListProps) {
+    /* const [tasks, setTasks] = useState<Task[]> ([
         {id: 1, name: "first task", completed: false},
         {id: 2, name: "second task", completed: false},
         {id: 3, name: "third task", completed: false}
-
     ]);
+    */ 
+
     const handleToggle = (id:number) =>{
         const updateTasks = tasks.map(task=> {
             if (task.id === id){
@@ -20,7 +26,11 @@ function IdeaList() {
     };
 
     const handleDelete = (id:number) =>{
+<<<<<<< HEAD
+        setTasks(tasks.filter(task => task.id !== id))
+=======
         setTasks(tasks.filter(task => task.id != id))
+>>>>>>> main
     };
 
     const sortedTasks = [...tasks].sort((a,b)=> Number(a.completed)-Number(b.completed));

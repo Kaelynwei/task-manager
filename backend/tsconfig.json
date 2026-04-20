@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+      /* 基礎設定 */
+      "target": "ES2022",                                  /* 編譯出的 JavaScript 版本 */
+      "module": "commonjs",                                /* Node.js 使用的模組標準 */
+      "lib": ["es2022"],                                   /* 編譯時包含的庫 */
+      
+      /* 檔案組織設定 */
+      "rootDir": "./src",                                  /* 原始碼所在的資料夾 */
+      "outDir": "./dist",                                  /* 編譯後檔案存放的資料夾 */
+      
+      /* 嚴格檢查 */
+      "strict": true,                                      /* 開啟所有嚴格類型檢查 */
+      "noImplicitAny": true,                               /* 不允許隱含的 any 類型 */
+      "esModuleInterop": true,                             /* 確保匯入像 express 這種模組時不會報錯 */
+      
+      /* 其他優化 */
+      "skipLibCheck": true,                                /* 跳過庫檔案的類型檢查（加速編譯） */
+      "forceConsistentCasingInFileNames": true             /* 強制檔案名稱大小寫一致 */
+    },
+    "include": ["src/**/*"],                               /* 告訴 TS 只檢查 src 資料夾下的檔案 */
+    "exclude": ["node_modules"]                            /* 排除 node_modules */
+  }
