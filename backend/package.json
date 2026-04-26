@@ -19,6 +19,12 @@
     "dependencies": {
         "cors": "^2.8.6",
         "dotenv": "^17.4.2",
-        "express": "^5.2.1"
+        "express": "^5.2.1",
+        "pg": "^8.20.0",
+        "pg-hstore": "^2.3.4",
+        "reflect-metadata": "^0.2.2",
+        "sequelize": "^6.37.8",
+        "sequelize-typescript": "^2.1.6",
+        "umzug": "^3.8.2"
     }
 }
