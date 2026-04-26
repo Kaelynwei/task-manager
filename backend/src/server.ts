@@ -16,7 +16,7 @@ const PORT = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors());
-app.use('/api/tasks', taskRoutes);
+app.use('/api/v1/tasks', taskRoutes);
 
 app.get('/', (req, res) => {
     res.send('API is running...');
