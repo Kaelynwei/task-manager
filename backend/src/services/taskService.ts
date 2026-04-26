@@ -1,23 +1,18 @@
-import { Task } from '../types/index';
+import { Task } from '../models/Task';
 
-let tasks: Task[] = [
-    {id: 1, title: "BACKEND", completed: false}
-];
-
-export const getAllTasks = (): Task[] => {
-    return tasks;
+export const getAllTasks = async (): Promise <Task[]> => {
+    return await Task.findAll();
 };
 
-export const getTaskById = (id: number): Task | undefined => {
-    return tasks.find(t => t.id === id);
+export const getTaskById = async (id: number): Promise <Task | null>=> {
+    return await Task.findByPk(id);
 };
 
-export const createTask = (title: string): Task => {
-    const newTask: Task ={
-        id: tasks.length + 1,
+export const createTask = async (title: string): Promise <Task> => {
+    const newTask = await Task.create ({
+        
         title,
         completed: false
-    };
-    tasks.push(newTask);
+    });
     return newTask;
 };
