@@ -26,11 +26,7 @@ function IdeaList({ tasks, setTasks }: IdeaListProps) {
     };
 
     const handleDelete = (id:number) =>{
-<<<<<<< HEAD
         setTasks(tasks.filter(task => task.id !== id))
-=======
-        setTasks(tasks.filter(task => task.id != id))
->>>>>>> main
     };
 
     const sortedTasks = [...tasks].sort((a,b)=> Number(a.completed)-Number(b.completed));
