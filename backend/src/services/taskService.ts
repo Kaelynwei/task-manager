@@ -14,7 +14,7 @@ export const getTaskById = (id: number): Task | undefined => {
 
 export const createTask = (title: string): Task => {
     const newTask: Task ={
-        id: tasks.length + 1,
+        id: Date.now(),
         title,
         completed: false
     };
