@@ -16,3 +16,18 @@ export const createTask = async (title: string): Promise <Task> => {
     });
     return newTask;
 };
+
+export const updateTask = async (id: number, completed: boolean): Promise<Task | null> => {
+    const task = await Task.findByPk(id);
+    if (task) {
+        task.completed = completed;
+        await task.save();
+    }
+    return task;
+};
+
+export const deleteTask = async (id: number): Promise<boolean> => {
+    const deletedCount = await Task.destroy({ where: { id }});
+    return deletedCount > 0;
+};
+
