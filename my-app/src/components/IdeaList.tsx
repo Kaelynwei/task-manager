@@ -1,5 +1,6 @@
 import Idea from "./Idea";
 import { type Task } from '../Type';
+import { updateTask, deleteTask } from '../api/tasks';
 
 
 interface IdeaListProps {
@@ -15,22 +16,34 @@ function IdeaList({ tasks, setTasks }: IdeaListProps) {
     ]);
     */ 
 
-    const handleToggle = (id:number) =>{
-        const updateTasks = tasks.map(task=> {
-            if (task.id === id){
-                return {...task, completed: !task.completed};
-            }
-            return task;
-        });
-        setTasks(updateTasks);
+    const handleToggle = async (id:number) =>{
+        const targetTask = tasks.find(task => task.id === id);
+        if (!targetTask) return;
+
+        try{
+            const updatedFromServer = await updateTask(id, { completed: !targetTask.completed });
+
+            const updateTasks = tasks.map(task=> {
+                if (task.id === id){
+                    return {...task, completed: updatedFromServer.completed};
+                }
+                return task;
+            });
+            setTasks(updateTasks);
+        } catch (error) {
+            console.error('Failed to toggle task status:', error);
+            alert('Cannot update task status.');
+        }
     };
 
-    const handleDelete = (id:number) =>{
-<<<<<<< HEAD
-        setTasks(tasks.filter(task => task.id !== id))
-=======
-        setTasks(tasks.filter(task => task.id != id))
->>>>>>> main
+    const handleDelete = async (id:number) =>{
+        try {
+            await deleteTask(id);
+            setTasks(tasks.filter(task => task.id !== id));
+        } catch (error) {
+            console.error('Failed to delete task:', error);
+            alert('Cannot delete task.')
+        }
     };
 
     const sortedTasks = [...tasks].sort((a,b)=> Number(a.completed)-Number(b.completed));
