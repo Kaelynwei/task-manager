@@ -2,6 +2,7 @@ import { Dispatch, SetStateAction } from 'react';
 import { type Task } from '../Type';
 import AddTaskForm from '../components/AddTaskForm';
 import IdeaList from '../components/IdeaList';
+import { createTask } from '../api/tasks';
 
 interface HomePageProps {
   tasks: Task[];
@@ -9,15 +10,15 @@ interface HomePageProps {
 }
 
 function HomePage({ tasks, setTasks }: HomePageProps) {
-  const handleAddTask = (title: string) => {
-    const newTask: Task = {
-      id: Date.now(),
-      name: title,
-      completed: false,
-      description: "",
-      dueDate: ""
-    };
-    setTasks([...tasks, newTask]);
+  const handleAddTask = async (title: string) => {
+   try {
+    const saveTask = await createTask(title);
+    setTasks([...tasks, savedTask]);
+   }
+   catch (error) {
+    console.error('Failed to add task:', error);
+    alert('Cannot create new task.');
+   }
   };
 
   return (
