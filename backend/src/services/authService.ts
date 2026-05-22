@@ -53,8 +53,10 @@ export const register = async (email: string, username: string, passwordPlain: s
       (error as any).statusCode = 401; 
       throw error;
     }
+
+    const userData = user.get({ plain: true });
   
-    const isPasswordValid = await bcrypt.compare(passwordPlain, user.passwordHash);
+    const isPasswordValid = await bcrypt.compare(passwordPlain, userData.passwordHash);
     
     if (!isPasswordValid) {
       const error = new Error('Invalid email or password');

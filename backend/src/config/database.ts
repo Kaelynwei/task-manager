@@ -1,6 +1,8 @@
 import { Sequelize } from 'sequelize-typescript';
 import { Task } from '../models/Task';
 import dotenv from 'dotenv';
+import { User } from '../models/User';
+
 
 dotenv.config();
 
@@ -11,6 +13,6 @@ export const sequelize = new Sequelize({
     username: process.env.DB_USER || 'postgres',
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME || 'task_manager',
-    models: [Task],
+    models: [Task, User],
     logging: false,
   });
