@@ -1,4 +1,5 @@
-import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, Default } from 'sequelize-typescript';
+import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, Default, ForeignKey, AllowNull } from 'sequelize-typescript';
+import { User } from './User';
 
 @Table({
     tableName: 'tasks',
@@ -21,4 +22,14 @@ import { Table, Column, Model, DataType, PrimaryKey, AutoIncrement, Default } fr
     @Default(false)
     @Column(DataType.BOOLEAN)
     completed!: boolean;
+
+    @ForeignKey(() => User)
+    @Column({
+      type: DataType.INTEGER,
+      allowNull: true,
+    })
+    userId!: number;
+
+    @BelongsTo(() => User)
+    user!: User;
   }
