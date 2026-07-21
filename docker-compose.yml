@@ -1,0 +1,66 @@
+services:
+  postgres_db:
+    image: postgres:15-alpine
+    container_name: task-manager-db
+    environment:
+      POSTGRES_USER: myuser
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: task_manager_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - app-network
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U myuser -d task_manager_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: task-manager-backend-container
+    environment:
+      NODE_ENV: production
+      PORT: 8000
+      DB_HOST: postgres_db
+      DB_USER: myuser
+      DB_PASSWORD: mypassword
+      DB_NAME: task_manager_db
+      DB_PORT: 5432
+      JWT_SECRET: fallback-secret-key
+      JWT_EXPIRES_IN: 1h
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres_db:
+        condition: service_healthy
+    networks:
+      - app-network
+    restart: always
+
+  frontend:
+    build:
+      context: ./my-app
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=http://localhost:8000
+    container_name: task-manager-frontend-container
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    networks:
+      - app-network
+    restart: always
+
+volumes:
+  pgdata:
+
+networks:
+  app-network:
+    driver: bridge
