@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import * as authService from '../services/authService';
 
+const JWT_SECRET = process.env.JWT_SECRET || 'KAELYN_SUPER_SECRET_KEY_2026';
+
 export const register = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
   try {
     const { email, username, password } = req.body;
@@ -29,7 +31,6 @@ export const login = async (req: Request, res: Response, next: NextFunction): Pr
       return;
     }
 
-    // call authService.login
     const result = await authService.login(email, password);
 
     res.status(200).json(result);
