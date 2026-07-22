@@ -6,6 +6,7 @@ import taskRoutes from './routes/tasks';
 import { Umzug, SequelizeStorage } from 'umzug';
 import { sequelize } from './config/database';
 import { errorHandler } from './middleware/errorHandler';
+import authRoutes from './routes/auth';
 
 
 
@@ -17,6 +18,7 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(cors());
 app.use('/api/v1/tasks', taskRoutes);
+app.use('/api/v1/auth', authRoutes); // /api/v1/auth
 
 app.get('/', (req, res) => {
     res.send('API is running...');
