@@ -9,26 +9,23 @@ interface IdeaListProps {
 }
 
 function IdeaList({ tasks, setTasks }: IdeaListProps) {
-    /* const [tasks, setTasks] = useState<Task[]> ([
-        {id: 1, name: "first task", completed: false},
-        {id: 2, name: "second task", completed: false},
-        {id: 3, name: "third task", completed: false}
-    ]);
-    */ 
+   
 
-    const handleToggle = async (id:number) =>{
+    const handleToggle = async (id: number) => {
         const targetTask = tasks.find(task => task.id === id);
         if (!targetTask) return;
 
-        try{
-            const updatedFromServer = await updateTask(id, { completed: !targetTask.completed });
+        const nextCompletedState = !targetTask.completed;
 
-            const updateTasks = tasks.map(task=> {
-                if (task.id === id){
-                    return {...task, completed: updatedFromServer.completed};
+        try {
+            await updateTask(id, { completed: nextCompletedState });
+            const updateTasks = tasks.map(task => {
+                if (task.id === id) {
+                    return { ...task, completed: nextCompletedState };
                 }
                 return task;
             });
+            
             setTasks(updateTasks);
         } catch (error) {
             console.error('Failed to toggle task status:', error);
