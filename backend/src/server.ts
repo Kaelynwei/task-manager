@@ -7,6 +7,7 @@ import authRoutes from './routes/auth';
 import { Umzug, SequelizeStorage } from 'umzug';
 import { sequelize } from './config/database';
 import { errorHandler } from './middleware/errorHandler';
+import authRoutes from './routes/auth';
 
 const app = express();
 const PORT = process.env.PORT || 4000; 
